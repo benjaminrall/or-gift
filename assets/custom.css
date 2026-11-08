@@ -1,0 +1,1057 @@
+/* ==========================================================================
+   Olivia Rodrigo UK Store Wrapper — Custom Layout & Component Styles
+   Builds directly on top of `assets/store-theme.css`
+   ========================================================================== */
+
+:root {
+  --or-black: #000000;
+  --or-surface: rgba(10, 10, 12, 0.88);
+  --or-surface-solid: #0b0b0d;
+  --or-white: #ffffff;
+  --or-pink: hsl(339, 95%, 84%);
+  --or-pink-dark: hsl(339, 95%, 70%);
+  --or-muted: #b4b4be;
+  --or-border: rgba(255, 255, 255, 0.26);
+  --or-border-subtle: rgba(253, 176, 201, 0.4);
+  --or-card-bg: url("https://shopuk.oliviarodrigo.com/cdn/shop/t/82/assets/bespoke-card-bg-1.jpg?v=165259219242171362831793974629");
+  --font-mono: "Courier New", Courier, monospace;
+  --font-display: 'just-like-heaven', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--or-black);
+}
+
+body {
+  background-color: transparent !important;
+  color: var(--or-white);
+  font-family: var(--font-mono);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ==========================================================================
+   0. FIXED STATIC FLORAL BACKGROUND (`.page-bg`) & SPINNER
+   ========================================================================== */
+.page-bg {
+  display: block !important;
+}
+
+.or-page-bg__fixed {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.or-page-bg__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.or-initial-loader {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.or-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(253, 176, 201, 0.25);
+  border-top-color: var(--or-pink);
+  border-radius: 50%;
+  animation: or-spin 0.7s linear infinite;
+}
+
+@keyframes or-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   1. LOCK SCREEN (WITH PINK TOP BANNER FOR BLACK OR LOGO)
+   ========================================================================== */
+.or-lock-screen {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.or-lock-card {
+  width: 100%;
+  max-width: 440px;
+  border: 1px solid var(--or-border-subtle);
+  background: rgba(8, 8, 10, 0.92);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.or-lock-banner {
+  width: 100%;
+  background-color: var(--or-pink);
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--or-black);
+}
+
+.or-lock-logo {
+  width: 84px;
+  height: auto;
+  display: block;
+}
+
+.or-lock-body {
+  padding: 2rem 2rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.or-lock-title {
+  font-family: var(--font-display);
+  font-size: 3.1rem;
+  line-height: 1.05;
+  font-weight: 400;
+  color: var(--or-white);
+  margin: 0.15rem 0;
+  text-transform: lowercase;
+}
+
+.or-lock-subtitle {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--or-muted);
+  margin: 0 0 0.35rem;
+  text-transform: lowercase;
+}
+
+.or-lock-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.or-lock-error {
+  color: #ff6b8b;
+  font-size: 0.8rem;
+  margin: 0.25rem 0 0;
+  text-transform: lowercase;
+}
+
+/* ==========================================================================
+   2. STICKY PINK TOP HEADER BAR (MATCHES OFFICIAL OR UK HEADER)
+   ========================================================================== */
+.or-top-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--or-pink);
+  color: var(--or-black);
+  border-bottom: 1px solid var(--or-black);
+}
+
+.or-top-header__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0.55rem 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.3;
+  text-transform: lowercase;
+}
+
+.or-top-header__left {
+  text-align: left;
+}
+
+.or-top-header__center {
+  display: flex;
+  justify-content: center;
+}
+
+.or-logo-link {
+  display: inline-block;
+}
+
+.or-top-header__logo {
+  width: 78px;
+  height: auto;
+  display: block;
+}
+
+.or-top-header__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  text-align: right;
+}
+
+@media (max-width: 767px) {
+  .or-top-header__inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.85rem;
+  }
+  .or-top-header__left,
+  .or-top-header__right {
+    text-align: center;
+    justify-content: center;
+  }
+  .or-top-header__center {
+    order: -1;
+  }
+}
+
+.or-gift-status-btn {
+  background: var(--or-black);
+  border: 1px solid var(--or-black);
+  color: var(--or-pink);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-transform: lowercase;
+}
+
+.or-gift-status-btn:hover {
+  background: var(--or-white);
+  color: var(--or-black);
+}
+
+.or-gift-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--or-pink);
+}
+
+/* ==========================================================================
+   3. COMMON UI ELEMENTS (BUTTONS, INPUTS, BADGES)
+   ========================================================================== */
+.or-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 4rem;
+  width: 100%;
+}
+
+.or-badge-pill,
+.or-free-pill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--or-pink);
+  color: var(--or-pink);
+  background: rgba(0, 0, 0, 0.65);
+  text-transform: lowercase;
+}
+
+.or-input,
+input.or-input,
+textarea.or-input,
+input.or-input:not(:placeholder-shown):invalid,
+input.or-input:invalid {
+  width: 100%;
+  background-color: #000000 !important;
+  color: var(--or-white) !important;
+  border: 1px solid var(--or-border);
+  padding: 0.65rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  outline: none;
+  border-radius: 0;
+}
+
+.or-input:focus,
+input.or-input:focus:invalid {
+  background-color: #000000 !important;
+  border-color: var(--or-pink) !important;
+}
+
+.or-input.is-invalid,
+input.or-input.is-invalid:invalid,
+input.or-input.is-invalid:focus {
+  background-color: #000000 !important;
+  border-color: #ff5c7c !important;
+}
+
+.or-textarea {
+  resize: vertical;
+}
+
+/* Imitates the OR Add to Cart Button (Pink fill, rounded 36px pill) */
+.or-btn {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  text-transform: lowercase;
+  padding: 0.8rem 1.4rem;
+  cursor: pointer;
+  border-radius: 36px;
+  border: 1px solid var(--or-white);
+  transition: all 0.2s ease-out;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.or-btn--primary {
+  background-color: var(--or-pink);
+  color: var(--or-black);
+  border-color: var(--or-white);
+  font-weight: 700;
+}
+
+.or-btn--display {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  line-height: 1.1;
+  font-weight: 400;
+  padding: 0.55rem 1.85rem;
+  width: auto;
+}
+
+.or-btn--primary:hover:not(:disabled) {
+  background-color: var(--or-black);
+  color: var(--or-pink);
+  border-color: var(--or-pink);
+}
+
+.or-btn--primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.or-btn--outline {
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--or-white);
+  border-color: var(--or-white);
+}
+
+.or-btn--outline:hover {
+  border-color: var(--or-pink);
+  color: var(--or-pink);
+}
+
+.or-text-btn {
+  background: none;
+  border: none;
+  color: var(--or-muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-decoration: underline;
+  cursor: pointer;
+  text-transform: lowercase;
+}
+
+.or-text-btn:hover {
+  color: var(--or-white);
+}
+
+/* ==========================================================================
+   4. COLLECTION BANNER, FACETS & PRODUCT GRID
+   ========================================================================== */
+.or-collection-banner {
+  margin-bottom: 1rem;
+}
+
+.or-collection-banner__top {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.or-collection-banner__top h1 {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 1.65rem;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
+}
+
+.or-facets-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.or-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.or-cat-tab {
+  background: var(--or-black);
+  border: 1px solid var(--or-border);
+  color: var(--or-white);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  text-transform: lowercase;
+  transition: all 0.15s ease;
+}
+
+.or-cat-tab:hover {
+  border-color: var(--or-pink);
+  color: var(--or-pink);
+}
+
+.or-cat-tab.active {
+  background: var(--or-pink);
+  color: var(--or-black);
+  border-color: var(--or-white);
+  font-weight: 700;
+}
+
+.or-facets-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.or-results-count {
+  font-size: 0.82rem;
+  color: var(--or-muted);
+  text-transform: lowercase;
+}
+
+.or-sort-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.or-sort-label {
+  font-size: 0.82rem;
+  color: var(--or-muted);
+  text-transform: lowercase;
+}
+
+.or-select {
+  background: rgba(0, 0, 0, 0.85);
+  color: var(--or-white);
+  border: 1px solid var(--or-border);
+  padding: 0.38rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+
+#product-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.or-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
+
+.or-card-price-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.15rem;
+}
+
+.or-card-free-tag {
+  font-size: 0.72rem;
+  color: var(--or-pink);
+  text-transform: lowercase;
+}
+
+/* ==========================================================================
+   5. PRODUCT DETAIL PAGE (PDP)
+   ========================================================================== */
+.or-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-transform: lowercase;
+}
+
+.or-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  text-decoration: none;
+}
+
+.or-back-link__text {
+  text-decoration: underline;
+}
+
+.or-back-link:hover .or-back-link__text {
+  text-decoration: none;
+}
+
+.or-back-link__icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  display: block;
+  flex-shrink: 0;
+}
+
+.or-pdp-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .or-pdp-grid {
+    grid-template-columns: 45% 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+}
+
+.or-pdp-main-img-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: calc(1000 / 700 * 100%);
+  background-image: var(--or-card-bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.or-pdp-img-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.or-pdp-main-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.18s ease-out;
+}
+
+.or-pdp-main-img.is-loaded {
+  opacity: 1;
+}
+
+.or-pdp-badges {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 10;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Exact OR UK Store Carousel Chevron Buttons */
+.or-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 15;
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.or-carousel-btn--prev {
+  left: 0.35rem;
+}
+
+.or-carousel-btn--next {
+  right: 0.35rem;
+}
+
+.or-carousel-btn__bg {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background-color: var(--or-black);
+  color: var(--or-pink);
+  display: grid;
+  place-items: center;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.or-carousel-btn:hover .or-carousel-btn__bg {
+  background-color: var(--or-white);
+  color: var(--or-black);
+}
+
+.or-carousel-btn__icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  display: block;
+}
+
+.or-carousel-btn__icon--prev {
+  transform: rotate(90deg);
+}
+
+.or-carousel-btn__icon--next {
+  transform: rotate(-90deg);
+}
+
+/* Square Center-Cropped Thumbnails (`72px x 72px`) */
+.or-pdp-thumbs {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.or-pdp-thumb-btn {
+  width: 72px;
+  height: 72px;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: 1px solid transparent;
+  background-image: var(--or-card-bg);
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  overflow: hidden;
+  opacity: 0.7;
+  transition: all 0.15s ease;
+}
+
+.or-pdp-thumb-btn.active,
+.or-pdp-thumb-btn:hover {
+  opacity: 1;
+  border-color: var(--or-white);
+}
+
+.or-pdp-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.or-pdp-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.or-pdp-type {
+  margin: 0 0 0.35rem;
+  font-size: 0.76rem;
+  color: var(--or-muted);
+  text-transform: lowercase;
+}
+
+.or-pdp-header h1,
+.or-pdp-title {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-display);
+  font-size: 2.65rem;
+  font-weight: 400;
+  line-height: 1.12;
+  text-transform: lowercase;
+}
+
+.or-pdp-price-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.or-pdp-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--or-white);
+}
+
+.or-preorder-box {
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid var(--or-border-subtle);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--or-pink);
+  text-transform: lowercase;
+}
+
+.or-variant-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.or-variant-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.or-selected-size-label {
+  font-size: 0.8rem;
+  color: var(--or-pink);
+  text-transform: lowercase;
+}
+
+.or-swatch-btn {
+  min-width: 3.4rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--or-white);
+  background: rgba(0, 0, 0, 0.65);
+  color: var(--or-white);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.or-swatch-btn:hover:not(:disabled) {
+  border-color: var(--or-pink);
+  color: var(--or-pink);
+}
+
+.or-swatch-btn.selected {
+  background: var(--or-white);
+  color: var(--or-black);
+  border-color: var(--or-white);
+  font-weight: 700;
+}
+
+.or-swatch-btn.sold-out {
+  text-decoration: line-through;
+  opacity: 0.38;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.or-size-warning {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+  color: #ff6b8b;
+  text-transform: lowercase;
+}
+
+.or-pdp-subnote {
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  color: var(--or-muted);
+  text-align: center;
+  text-transform: lowercase;
+}
+
+.or-pdp-actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.or-pdp-description-wrap {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 1.25rem;
+}
+
+.or-pdp-section-heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 0 0.65rem;
+  text-transform: lowercase;
+  color: var(--or-pink);
+}
+
+.or-pdp-description {
+  font-size: 0.86rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: lowercase;
+}
+
+.or-pdp-description p {
+  margin: 0 0 0.75rem;
+}
+
+/* ==========================================================================
+   6. CHECKOUT MODAL & RECEIPT
+   ========================================================================== */
+.or-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.or-modal {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: var(--or-surface-solid);
+  border: 1px solid var(--or-border-subtle);
+  padding: 2rem 1.5rem;
+  color: var(--or-white);
+}
+
+.or-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--or-white);
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+.or-modal-title {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 400;
+  margin: 0.5rem 0 1rem;
+  text-transform: lowercase;
+}
+
+.or-checkout-item-summary {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.or-checkout-item-img-wrap {
+  width: 68px;
+  height: 68px;
+  flex-shrink: 0;
+  background-image: var(--or-card-bg);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.or-checkout-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.or-checkout-item-meta p {
+  margin: 0.15rem 0;
+  font-size: 0.82rem;
+  text-transform: lowercase;
+}
+
+.or-checkout-item-title {
+  font-weight: 700;
+  color: var(--or-white);
+}
+
+.or-checkout-item-variant {
+  color: var(--or-pink);
+}
+
+.or-address-helper {
+  background: rgba(253, 176, 201, 0.08);
+  border: 1px solid var(--or-border-subtle);
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.or-address-helper__text {
+  margin: 0 0 0.6rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: lowercase;
+}
+
+.or-address-helper__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.or-mini-btn {
+  background: #000000;
+  color: var(--or-pink);
+  border: 1px solid var(--or-border-subtle);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.28rem 0.7rem;
+  cursor: pointer;
+  text-transform: lowercase;
+}
+
+.or-mini-btn:hover {
+  background: var(--or-pink);
+  color: var(--or-black);
+}
+
+.or-shipping-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.or-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.or-form-group label {
+  font-size: 0.76rem;
+  color: var(--or-muted);
+  text-transform: lowercase;
+}
+
+.or-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.or-modal-actions {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.or-success-text {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: lowercase;
+}
+
+.or-receipt-card {
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  text-transform: lowercase;
+}
+
+/* ==========================================================================
+   7. FOOTER
+   ========================================================================== */
+.or-footer {
+  margin-top: auto;
+  padding: 0 0 2rem;
+  text-align: center;
+  color: var(--or-muted);
+  text-transform: lowercase;
+}
+
+.or-footer::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin-bottom: 2rem;
+  background-image: url("https://shopuk.oliviarodrigo.com/cdn/shop/t/82/assets/bespoke-stitchborder-white.png?v=57718605239134560461793974629");
+  background-size: auto 100%;
+  background-repeat: repeat;
+}
+
+.or-footer__inner {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.or-footer__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.or-footer__link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,342 @@
+<!doctype html>
+<html class="flex flex-col min-h-full" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Olivia Rodrigo UK Official Store — Birthday Gift Edition</title>
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.png">
+  <link rel="preload" href="assets/JustLikeHeavenRegular.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="assets/store-theme.css">
+  <link rel="stylesheet" href="assets/custom.css">
+</head>
+<body class="scheme-scheme1 c-text-content-base min-h-screen flex flex-col">
+
+  <!-- ===================================================================== -->
+  <!-- 0. FIXED STATIC FLORAL BACKGROUND (COPIED FROM OR UK STORE)           -->
+  <!-- ===================================================================== -->
+  <aside id="shopify-section-page-background" class="page-bg" aria-hidden="true">
+    <div class="or-page-bg__fixed">
+      <picture class="w-full h-full block">
+        <source
+          srcset="https://shopuk.oliviarodrigo.com/cdn/shop/files/OLIVIA_00052_TURD2C_SiteExp_BG_Desktop-03.jpg?v=1790003494&amp;width=1597"
+          media="(min-width: 760px)"
+        >
+        <img
+          src="https://shopuk.oliviarodrigo.com/cdn/shop/files/OLIVIA_00052_TURD2C_SiteExp_BG-01.jpg?v=1790003494&amp;width=900"
+          alt=""
+          class="or-page-bg__img"
+        >
+      </picture>
+    </div>
+  </aside>
+
+  <!-- ===================================================================== -->
+  <!-- 1. INITIAL TRANSITION LOADER (PREVENTS LOGIN & FONT FLASH ON REFRESH) -->
+  <!-- ===================================================================== -->
+  <div id="initial-loader" class="or-initial-loader">
+    <div class="or-spinner" aria-label="Loading..."></div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 2. LOCK SCREEN (HIDDEN UNTIL FONTS READY & ONLY SHOWN IF LOCKED)      -->
+  <!-- ===================================================================== -->
+  <div id="lock-screen" class="or-lock-screen" hidden>
+    <div class="or-lock-card">
+      <!-- Pink Banner Header with Black OR Logo -->
+      <div class="or-lock-banner">
+        <img src="assets/logo.avif" alt="Olivia Rodrigo" class="or-lock-logo">
+      </div>
+
+      <div class="or-lock-body">
+        <span class="or-badge-pill">private birthday gift portal</span>
+        <h1 class="or-lock-title">spill ur guts</h1>
+        <p class="or-lock-subtitle">
+          this page is private. enter the secret key from your steam birthday gift message to unlock the store.
+        </p>
+        <form id="unlock-form" class="or-lock-form" autocomplete="off">
+          <input
+            type="password"
+            id="secret-key-input"
+            class="or-input"
+            placeholder="enter secret key..."
+            required
+          >
+          <button type="submit" id="unlock-btn" class="or-btn or-btn--primary w-full">
+            unlock store
+          </button>
+          <p id="unlock-error" class="or-lock-error" hidden>
+            invalid secret key. check your steam gift message and try again!
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 3. MAIN APPLICATION (HIDDEN UNTIL UNLOCKED)                           -->
+  <!-- ===================================================================== -->
+  <div id="app-shell" class="flex flex-col min-h-screen" hidden>
+
+    <!-- Sticky Pink Top Header Bar (Matches Official OR UK Header) -->
+    <header class="or-top-header">
+      <div class="or-top-header__inner">
+        <div class="or-top-header__left">
+          <span>★ happy birthday <strong id="banner-recipient-name">nehal</strong>!</span>
+        </div>
+
+        <div class="or-top-header__center">
+          <a href="#merch" id="logo-home-link" class="or-logo-link" aria-label="Olivia Rodrigo Merch Home">
+            <img src="assets/logo.avif" alt="Olivia Rodrigo" class="or-top-header__logo">
+          </a>
+        </div>
+
+        <div class="or-top-header__right">
+          <span class="or-top-header__hint">pick any merch item to receive as a gift ★</span>
+          <button type="button" id="locked-gift-status-btn" class="or-gift-status-btn" hidden>
+            <span class="or-gift-status-dot"></span>
+            <span>view locked-in gift</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="MainContent" role="main" class="grow z-10">
+
+      <!-- ================================================================= -->
+      <!-- VIEW A: COLLECTION GRID VIEW (`/collections/merch`)               -->
+      <!-- ================================================================= -->
+      <section id="collection-view" class="or-container">
+        <!-- Collection Heading -->
+        <div class="or-collection-banner">
+          <div class="or-collection-banner__top">
+            <h1 class="text_heading_lg c-text-content-heading">Merch</h1>
+            <span class="or-free-pill">birthday gift &bull; all items free</span>
+          </div>
+        </div>
+
+        <!-- Filter & Sort Controls -->
+        <div class="or-facets-bar">
+          <div id="category-tabs" class="or-category-tabs" role="tablist" aria-label="Merch Categories">
+            <!-- Populated dynamically by app.js -->
+          </div>
+
+          <div class="or-facets-right">
+            <span id="results-count" class="or-results-count">61 results</span>
+            <div class="or-sort-wrap">
+              <label for="sort-select" class="or-sort-label">sort by:</label>
+              <select id="sort-select" class="or-select">
+                <option value="manual" selected>featured</option>
+                <option value="title-asc">alphabetically, a-z</option>
+                <option value="title-desc">alphabetically, z-a</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Grid -->
+        <ul
+          id="product-grid"
+          class="product-grid grid-layout grid-layout--product grid--product flex flex-wrap gap-x-lg-sm md:gap-x-container-sm gap-y-lg-sm md:gap-y-container-sm"
+          style="--cols: 2; --cols-md: 3; --cols-lg: 4; --grid-gap: var(--gap-container-sm, 1.5rem); --grid-gap-x: var(--gap-container-sm, 1.5rem); --grid-gap-y: var(--gap-container-sm, 2rem);"
+        >
+          <!-- Cards injected dynamically from data/products.json -->
+        </ul>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- VIEW B: PRODUCT DETAIL PAGE (`/products/<handle>`)                -->
+      <!-- ================================================================= -->
+      <section id="product-view" class="or-container" hidden>
+        <!-- Breadcrumbs -->
+        <nav class="or-breadcrumbs text_body_sm" aria-label="Breadcrumbs">
+          <a href="#merch" id="back-to-merch-link" class="or-back-link c-text-content-emphasis">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="or-back-link__icon" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M13 8H3M7 4L3 8l4 4"/>
+            </svg>
+            <span class="or-back-link__text">back to merch</span>
+          </a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span id="pdp-breadcrumb-title"></span>
+        </nav>
+
+        <div class="or-pdp-grid">
+          <!-- Left: Image Gallery -->
+          <div id="product_media" class="or-pdp-media">
+            <div class="or-pdp-main-img-wrap">
+              <div id="pdp-badges" class="or-pdp-badges"></div>
+
+              <!-- Loading spinner shown while switching products/images so old image never flashes -->
+              <div id="pdp-img-loader" class="or-pdp-img-loader">
+                <div class="or-spinner"></div>
+              </div>
+
+              <!-- Previous Image Button (Exact OR Store Chevron Style) -->
+              <button type="button" id="pdp-prev-img" class="or-carousel-btn or-carousel-btn--prev" aria-label="Previous image">
+                <span class="or-carousel-btn__bg">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="or-carousel-btn__icon or-carousel-btn__icon--prev" fill="currentColor">
+                    <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
+                  </svg>
+                </span>
+              </button>
+
+              <img id="pdp-main-img" src="" alt="" class="or-pdp-main-img">
+
+              <!-- Next Image Button (Exact OR Store Chevron Style) -->
+              <button type="button" id="pdp-next-img" class="or-carousel-btn or-carousel-btn--next" aria-label="Next image">
+                <span class="or-carousel-btn__bg">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="or-carousel-btn__icon or-carousel-btn__icon--next" fill="currentColor">
+                    <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
+                  </svg>
+                </span>
+              </button>
+            </div>
+
+            <!-- Square Center-Cropped Thumbnails -->
+            <div id="pdp-thumbnails" class="or-pdp-thumbs"></div>
+          </div>
+
+          <!-- Right: Product Info, Variant Swatches, Claim CTA, Description -->
+          <div class="or-pdp-info">
+            <div class="or-pdp-header">
+              <p id="pdp-category-label" class="or-pdp-type"></p>
+              <h1 id="pdp-title" class="or-pdp-title c-text-content-heading"></h1>
+              <div class="or-pdp-price-row">
+                <span class="or-pdp-price">£0.00</span>
+                <span class="or-free-pill">free birthday gift</span>
+              </div>
+            </div>
+
+            <div id="pdp-preorder-notice" class="or-preorder-box" hidden>
+              <strong>pre-order item:</strong> this item is in stock for pre-order on the official store and will ship automatically once released.
+            </div>
+
+            <!-- Variant / Size Selector (Automatically hidden for items with no size) -->
+            <div id="pdp-variant-section" class="or-variant-section" hidden>
+              <div class="or-variant-header">
+                <span id="pdp-option-name" class="form__label text_body_sm">size</span>
+              </div>
+              <div id="pdp-variant-swatches" class="options-values flex flex-wrap gap-sm-sm"></div>
+            </div>
+
+            <!-- Claim Gift CTA -->
+            <div class="or-pdp-actions">
+              <button type="button" id="claim-gift-btn" class="or-btn or-btn--primary or-btn--display">
+                select this gift
+              </button>
+            </div>
+
+            <!-- Product Description -->
+            <div class="or-pdp-description-wrap">
+              <h2 class="or-pdp-section-heading">product details</h2>
+              <div id="pdp-description" class="or-pdp-description text_body_sm"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="or-footer">
+      <div class="or-container or-footer__inner">
+        <p class="text_body_xs">
+          birthday olivia rodrigo merch site &bull; all items sourced from the <a href="https://shopuk.oliviarodrigo.com" target="_blank" rel="noopener noreferrer" class="or-footer__link">official olivia rodrigo uk store</a>
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 4. CHECKOUT / SHIPPING ADDRESS MODAL                                  -->
+  <!-- ===================================================================== -->
+  <div id="checkout-modal" class="or-modal-backdrop" hidden>
+    <div class="or-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title">
+      <button type="button" id="close-modal-btn" class="or-modal-close" aria-label="Close modal">✕</button>
+
+      <!-- Step 1: Address Form -->
+      <div id="checkout-form-step">
+        <h2 id="checkout-modal-title" class="or-modal-title">confirm shipping details</h2>
+
+        <!-- Selected Item Summary -->
+        <div class="or-checkout-item-summary">
+          <div class="or-checkout-item-img-wrap">
+            <img id="checkout-item-img" src="" alt="" class="or-checkout-item-img">
+          </div>
+          <div class="or-checkout-item-meta">
+            <p id="checkout-item-title" class="or-checkout-item-title"></p>
+            <p id="checkout-item-variant" class="or-checkout-item-variant"></p>
+            <p class="or-checkout-item-price">total: <strong>£0.00 (birthday gift)</strong></p>
+          </div>
+        </div>
+
+        <form id="shipping-form" class="or-shipping-form" novalidate>
+          <div class="or-form-group">
+            <label for="ship-name">full name *</label>
+            <input type="text" id="ship-name" class="or-input" required>
+          </div>
+
+          <div class="or-form-group">
+            <label for="ship-line1">address line 1 *</label>
+            <input type="text" id="ship-line1" class="or-input" required>
+          </div>
+
+          <div class="or-form-group">
+            <label for="ship-line2">address line 2 (optional)</label>
+            <input type="text" id="ship-line2" class="or-input">
+          </div>
+
+          <div class="or-form-row">
+            <div class="or-form-group">
+              <label for="ship-city">town / city *</label>
+              <input type="text" id="ship-city" class="or-input" required>
+            </div>
+            <div class="or-form-group">
+              <label for="ship-postcode">postcode *</label>
+              <input type="text" id="ship-postcode" class="or-input" required>
+            </div>
+          </div>
+
+          <div class="or-form-group">
+            <label for="ship-notes">any other notes? (optional)</label>
+            <textarea id="ship-notes" class="or-input or-textarea" rows="2"></textarea>
+          </div>
+
+          <p id="checkout-error" class="or-lock-error" hidden></p>
+
+          <div class="or-modal-actions">
+            <button type="submit" id="submit-order-btn" class="or-btn or-btn--primary w-full">
+              ★ lock in birthday gift ★
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 2: Confirmation Receipt -->
+      <div id="checkout-success-step" hidden>
+        <div class="or-success-box">
+          <h2 class="or-modal-title">your gift is locked in!</h2>
+
+          <div id="receipt-summary" class="or-receipt-card"></div>
+
+          <div class="or-modal-actions">
+            <button type="button" id="done-modal-btn" class="or-btn or-btn--primary w-full">
+              back to store
+            </button>
+            <button type="button" id="change-selection-btn" class="or-text-btn mt-2">
+              need to change your item or address? click here
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
